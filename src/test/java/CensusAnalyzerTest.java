@@ -39,4 +39,16 @@ public class CensusAnalyzerTest {
             assertEquals(FileFormatException.class, exception.getClass());
         }
     }
+
+    // TC 1.4: check for incorrect delimiter in csv file
+    @Test
+    public void testIncorrectDelimiter() {
+        CSVStateCensus dummy = new CSVStateCensus("src/main/resources/StateCensusTest1.csv");
+        try {
+            dummy.loadDataFromFile();
+            fail("DelimiterException expected");
+        } catch (Exception exception) {
+            assertEquals(DelimiterException.class, exception.getClass());
+        }
+    }
 }

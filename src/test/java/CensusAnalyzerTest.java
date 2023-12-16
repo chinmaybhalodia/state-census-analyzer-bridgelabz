@@ -51,4 +51,16 @@ public class CensusAnalyzerTest {
             assertEquals(DelimiterException.class, exception.getClass());
         }
     }
+
+    // TC 1.5: check for incorrect csv header
+    @Test
+    public void testIncorrectHeader() {
+        CSVStateCensus dummy = new CSVStateCensus("src/main/resources/StateCensusTest2.csv");
+        try {
+            dummy.loadDataFromFile();
+            fail("IncorrectHeaderException expected");
+        } catch (Exception exception) {
+            assertEquals(IncorrectHeaderException.class, exception.getClass());
+        }
+    }
 }

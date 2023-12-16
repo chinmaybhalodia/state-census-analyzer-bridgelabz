@@ -27,4 +27,16 @@ public class CensusAnalyzerTest {
             assertEquals(FileReaderException.class, exception.getClass());
         }
     }
+
+    // TC 1.3: check for incorrect file type
+    @Test
+    public void testIncorrectFileType() {
+        CSVStateCensus dummy = new CSVStateCensus("src/main/resources/DUMMY_FILE.txt");
+        try {
+            dummy.loadDataFromFile();
+            fail("FileFormatException expected.");
+        } catch (Exception exception) {
+            assertEquals(FileFormatException.class, exception.getClass());
+        }
+    }
 }

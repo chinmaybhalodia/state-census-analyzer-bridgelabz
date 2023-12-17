@@ -42,11 +42,20 @@ public class CensusAnalyzerTest {
     }
 
     // TC 1.3: check for incorrect file type
+    // TC 2.3: check for incorrect file type for state data
     @Test
     public void testIncorrectFileType() {
         CSVStateCensus dummy = new CSVStateCensus("src/main/resources/DUMMY_FILE.txt");
         try {
             dummy.loadDataFromFile();
+            fail("FileFormatException expected.");
+        } catch (Exception exception) {
+            assertEquals(FileFormatException.class, exception.getClass());
+        }
+
+        CSVStates dummy2 = new CSVStates("src/main/resources/DUMMY_FILE.txt");
+        try {
+            dummy2.loadDataFromFile();
             fail("FileFormatException expected.");
         } catch (Exception exception) {
             assertEquals(FileFormatException.class, exception.getClass());

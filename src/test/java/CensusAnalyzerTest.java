@@ -21,11 +21,20 @@ public class CensusAnalyzerTest {
     }
 
     // TC 1.2: check for incorrect file
+    // TC 2.2: check for incorrect file for state data
     @Test
     public void testIncorrectFile() {
         CSVStateCensus dummy = new CSVStateCensus("src/main/resources/DUMMY_FILE.csv");
         try {
             dummy.loadDataFromFile();
+            fail("FileReaderException expected.");
+        } catch (Exception exception) {
+            assertEquals(FileReaderException.class, exception.getClass());
+        }
+
+        CSVStates dummy2 = new CSVStates("src/main/resources/DUMMY_FILE.csv");
+        try {
+            dummy2.loadDataFromFile();
             fail("FileReaderException expected.");
         } catch (Exception exception) {
             assertEquals(FileReaderException.class, exception.getClass());

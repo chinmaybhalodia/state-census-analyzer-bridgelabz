@@ -10,10 +10,14 @@ public class CensusAnalyzerTest {
     StateCensusAnalyzer stateCensusAnalyzer = new StateCensusAnalyzer("src/main/resources/StateCensus.csv");
 
     // TC 1.1: check if number of records matches
+    // TC 2.1: check if number of state records matches
     @Test
     public void testNumberOfRecords() {
         int records_fetched = stateCensusAnalyzer.countRecordsInCSVData();
         assertEquals(37, records_fetched);
+
+        int state_records_fetched = stateCensusAnalyzer.countRecordsInCSVStatesData();
+        assertEquals(37, state_records_fetched);
     }
 
     // TC 1.2: check for incorrect file
